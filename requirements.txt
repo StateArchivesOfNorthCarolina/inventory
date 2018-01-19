@@ -1,0 +1,4 @@
+tqdm==4.19.5
+prefetch_generator==1.0.0
+setuptools==38.4.0
+peewee==2.10.2
