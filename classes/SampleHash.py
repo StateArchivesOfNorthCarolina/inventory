@@ -2,6 +2,7 @@ import hashlib
 from pathlib import Path
 import logging
 import os
+import platform
 import time
 import multiprocessing
 
@@ -12,11 +13,16 @@ class BasicHash:
     MD5 = hashlib.md5
 
     def __init__(self, file: str, algo=BLAKE2B) -> None:
-        super().__init__()
-        self.file_to_hash = Path(file)
+        if platform.system() == "Windows":
+            self.file_to_hash = file
+        else:
+            self.file_to_hash = file
         self.algo = algo
         self.read_buffer = 2**16
-        self.file_size = os.path.getsize(self.file_to_hash)
+        try:
+            self.file_size = os.path.getsize(self.file_to_hash)
+        except FileNotFoundError as e:
+            raise FileNotFoundError(e)
 
     def do_hash(self):
         pass
