@@ -12,7 +12,7 @@ class BasicHash:
     SHA256 = hashlib.sha256
     MD5 = hashlib.md5
 
-    def __init__(self, file: str, algo=BLAKE2B) -> None:
+    def __init__(self, file: str, algo=SHA256) -> None:
         if platform.system() == "Windows":
             self.file_to_hash = file
         else:
